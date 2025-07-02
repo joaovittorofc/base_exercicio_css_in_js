@@ -15,4 +15,39 @@ const Form = styled.form`
 `
 
 const Campo = styled.input`
-  paddi
+  padding: 0 16px;
+  outline-color: var(--cor-principal);
+`
+
+const Botao = styled.button`
+  background-color: var(--cor-principal);
+  border: 1px solid var(--cor-principal);
+  height: 40px;
+  padding: 0 16px;
+  font-size: 18px;
+  color: var(--cor-secundaria);
+  margin-left: 8px;
+  cursor: pointer;
+`
+
+const FormVagas = ({ aoPesquisar }: Props) => {
+  const [termo, setTermo] = useState<string>('')
+
+  const aoEnviarForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    aoPesquisar(termo.toLocaleLowerCase())
+  }
+
+  return (
+    <Form onSubmit={aoEnviarForm}>
+      <Campo
+        placeholder="Front-end, fullstack, node, design"
+        onChange={(e) => setTermo(e.target.value)}
+        type="search"
+      />
+      <Botao type="submit">Pesquisar</Botao>
+    </Form>
+  )
+}
+
+export default FormVagas
